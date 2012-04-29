@@ -1,7 +1,7 @@
-xdgmime (0.0.12-0) unstable; urgency=low
+xdgmime (0.0.12-1) unstable; urgency=low
 
   * Initial release.
   * Git: pkgs/x/xdgmime
-  * Tag: xdgmime_0.0.12-0
+  * Tag: xdgmime_0.0.12-1
 
  -- Sangil Yoon <si83.yoon@samsung.com>  Wed, 07 Dec 2011 13:09:13 +0900
