@@ -5,6 +5,7 @@ Release:    1
 Group:      TO_BE/FILLED_IN
 License:    LGPLv2, AFLv2
 Source0:    xdgmime-%{version}.tar.gz
+Source1001: packaging/xdgmime.manifest 
 Requires(post): /sbin/ldconfig, /bin/chown, /bin/chmod
 Requires(postun): /sbin/ldconfig
 BuildRequires:  cmake
@@ -24,6 +25,7 @@ Package xdgmime (devel)
 %setup -q -n %{name}-%{version}
 
 %build
+cp %{SOURCE1001} .
 cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
 
 make %{?jobs:-j%jobs}
@@ -40,10 +42,12 @@ chmod 644 /usr/lib/libxdgmime.so.1.1.0
 %postun -p /sbin/ldconfig
 
 %files
+%manifest xdgmime.manifest
 %defattr(-,root,root,-)
 /usr/lib/libxdgmime.so.*
 
 %files devel
+%manifest xdgmime.manifest
 %defattr(-,root,root,-)
 /usr/include/xdgmime.h
 /usr/lib/libxdgmime.so
