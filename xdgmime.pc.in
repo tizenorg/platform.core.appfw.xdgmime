@@ -1,0 +1,13 @@
+# Package Information for pkg-config
+
+prefix=/usr
+exec_prefix=@EXEC_PREFIX@
+libdir=@LIBDIR@
+includedir=@INCLUDEDIR@
+
+Name: libxdgmime
+Description: FreeDesktop Shared-Mime-Info Library
+Version: @VERSION@
+Requires: 
+Libs: -L${libdir} -lxdgmime
+Cflags: -I${includedir}
