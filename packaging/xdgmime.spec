@@ -1,51 +1,45 @@
-Name:       xdgmime
-Summary:    Pkg xdgmime
-Version:    0.0.12
-Release:    2
-Group:      TO_BE/FILLED_IN
-License:    LGPLv2, AFLv2
-Source0:    xdgmime-%{version}.tar.gz
-Requires(post): /sbin/ldconfig, /bin/chown, /bin/chmod
-Requires(postun): /sbin/ldconfig
+Name:           xdgmime
+Version:        0.0.12
+Release:        2
+License:        LGPLv2, AFLv2
+Summary:        Pkg xdgmime
+Group:          TO_BE/FILLED_IN
+Source0:        xdgmime-%{version}.tar.gz
 BuildRequires:  cmake
 
 %description
-Package xdgmime 
+Package xdgmime
 
 %package devel
-Summary:    Pkg xdgmime (devel)
-Group:      Development/Libraries
-Requires:   %{name} = %{version}-%{release}
+Summary:        Pkg xdgmime (devel)
+Group:          Development/Libraries
+Requires:       %{name} = %{version}
 
 %description devel
 Package xdgmime (devel)
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
-cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
+%cmake . 
 
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
 %make_install
 
-%post
-chown root:root /usr/lib/libxdgmime.so.1.1.0
-chmod 644 /usr/lib/libxdgmime.so.1.1.0
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/libxdgmime.so.*
+%{_libdir}/libxdgmime.so.*
 %manifest xdgmime.manifest
 
 %files devel
 %defattr(-,root,root,-)
-/usr/include/xdgmime.h
-/usr/lib/libxdgmime.so
-/usr/lib/pkgconfig/xdgmime.pc
+%{_includedir}/xdgmime.h
+%{_libdir}/libxdgmime.so
+%{_libdir}/pkgconfig/xdgmime.pc

@@ -74,10 +74,10 @@ SET_TARGET_PROPERTIES(xdgmime PROPERTIES VERSION ${VERSION})
 CONFIGURE_FILE(xdgmime.pc.in xdgmime.pc @ONLY)
 
 ### Install ###
-INSTALL(TARGETS xdgmime DESTINATION lib COMPONENT RuntimeLibraries)
+INSTALL(TARGETS xdgmime DESTINATION ${LIB_INSTALL_DIR} COMPONENT RuntimeLibraries)
 
 INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/xdgmime/src/xdgmime.h DESTINATION include)
-INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/xdgmime.pc DESTINATION lib/pkgconfig)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/xdgmime.pc DESTINATION ${LIB_INSTALL_DIR}/pkgconfig)
 
 # test
 add_subdirectory(test)
