@@ -1,0 +1,8 @@
+Change-Id: Ia4ba312355971d2bac595b8f569dc9894f375d32
+Code-Review+2: Anas Nashif
+Verified+1: Baptiste DURAND <baptiste.durand@eurogiciel.fr>
+Submitted-by: Anas Nashif
+Submitted-at: Mon, 03 Jun 2013 05:08:21 -0700
+Reviewed-on: https://review.tizen.org/gerrit/3779
+Project: platform/core/appfw/xdgmime
+Branch: refs/heads/tizen
