@@ -5,6 +5,7 @@ License:        LGPLv2, AFLv2
 Summary:        Pkg xdgmime
 Group:          TO_BE/FILLED_IN
 Source0:        xdgmime-%{version}.tar.gz
+Source1001: 	xdgmime.manifest
 BuildRequires:  cmake
 
 %description
@@ -20,6 +21,7 @@ Package xdgmime (devel)
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 %cmake . 
@@ -34,11 +36,13 @@ make %{?_smp_mflags}
 %postun -p /sbin/ldconfig
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/libxdgmime.so.*
 %manifest xdgmime.manifest
 
 %files devel
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_includedir}/xdgmime.h
 %{_libdir}/libxdgmime.so
