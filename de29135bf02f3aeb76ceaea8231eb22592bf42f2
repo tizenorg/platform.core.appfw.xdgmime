@@ -1,0 +1,8 @@
+Change-Id: Ide29135bf02f3aeb76ceaea8231eb22592bf42f2
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 10:07:12 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4496
+Project: platform/core/appfw/xdgmime
+Branch: refs/heads/tizen
