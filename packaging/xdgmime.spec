@@ -1,6 +1,6 @@
 Name:           xdgmime
 Version:        0.0.12
-Release:        2
+Release:        3
 License:        LGPLv2, AFLv2
 Summary:        Pkg xdgmime
 Group:          TO_BE/FILLED_IN
@@ -30,6 +30,8 @@ make %{?_smp_mflags}
 
 %install
 %make_install
+mkdir -p %{buildroot}/usr/share/license
+install COPYING %{buildroot}/usr/share/license/%{name}
 
 %post -p /sbin/ldconfig
 
@@ -40,6 +42,7 @@ make %{?_smp_mflags}
 %defattr(-,root,root,-)
 %{_libdir}/libxdgmime.so.*
 %manifest xdgmime.manifest
+/usr/share/license/%{name}
 
 %files devel
 %manifest %{name}.manifest
