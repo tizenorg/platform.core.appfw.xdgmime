@@ -1,7 +1,0 @@
-#!/bin/sh
-if [ ${USER} == "root" ]
-then
-        chown root:root /usr/lib/libxdgmime.so.1.1.0
-fi
-
-chmod 644 /usr/lib/libxdgmime.so.1.1.0
