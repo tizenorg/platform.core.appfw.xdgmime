@@ -2,22 +2,22 @@ Name:           xdgmime
 Version:        0.0.12
 Release:        0
 License:        LGPL-2.0 and AFL-2.0
-Summary:        Pkg xdgmime
+Summary:        Querying information about file type
 Group:          Applications/Other
 Source0:        xdgmime-%{version}.tar.gz
 Source1001:     xdgmime.manifest
 BuildRequires:  cmake
 
 %description
-Package xdgmime
+Querying information about file type package.
 
 %package devel
-Summary:        Pkg xdgmime (devel)
+Summary:        Querying information about file type (devel)
 Group:          Development/Libraries
 Requires:       %{name} = %{version}
 
 %description devel
-Package xdgmime (devel)
+Querying information about file type (devel) package.
 
 %prep
 %setup -q
@@ -25,8 +25,7 @@ cp %{SOURCE1001} .
 
 %build
 %cmake . 
-
-make %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 %install
 %make_install
@@ -39,7 +38,6 @@ make %{?_smp_mflags}
 %manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/libxdgmime.so.*
-%manifest xdgmime.manifest
 %license COPYING
 
 %files devel
