@@ -1,7 +1,7 @@
 Name:           xdgmime
 Version:        0.0.12
 Release:        0
-License:        LGPL-2.1+ and AFL-2.0
+License:        LGPL-2.1 and AFL-2.0
 Summary:        Querying information about file type
 Group:          Applications/Other
 Source0:        xdgmime-%{version}.tar.gz
