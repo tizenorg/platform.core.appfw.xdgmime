@@ -24,6 +24,7 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #include "xdgmime/src/xdgmime.h"
 
 #define PERF_ACTIVATE

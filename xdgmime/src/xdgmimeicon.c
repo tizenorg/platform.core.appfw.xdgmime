@@ -46,7 +46,7 @@
 
 typedef struct XdgIcon XdgIcon;
 
-struct XdgIcon 
+struct XdgIcon
 {
   char *mime_type;
   char *icon_name;
@@ -71,7 +71,7 @@ _xdg_mime_icon_list_new (void)
   return list;
 }
 
-void         
+void
 _xdg_mime_icon_list_free (XdgIconList *list)
 {
   int i;
@@ -146,20 +146,20 @@ _xdg_mime_icon_read_from_file (XdgIconList *list,
       if (list->n_icons == alloc)
 	{
 	  alloc <<= 1;
-	  list->icons = realloc (list->icons, 
+	  list->icons = realloc (list->icons,
 				   alloc * sizeof (XdgIcon));
 	}
       list->icons[list->n_icons].mime_type = strdup (line);
       list->icons[list->n_icons].icon_name = strdup (sep);
       list->n_icons++;
     }
-  list->icons = realloc (list->icons, 
+  list->icons = realloc (list->icons,
 			   list->n_icons * sizeof (XdgIcon));
 
-  fclose (file);  
-  
+  fclose (file);
+
   if (list->n_icons > 1)
-    qsort (list->icons, list->n_icons, 
+    qsort (list->icons, list->n_icons,
            sizeof (XdgIcon), icon_entry_cmp);
 }
 
@@ -173,7 +173,7 @@ _xdg_mime_icon_list_dump (XdgIconList *list)
     {
       for (i = 0; i < list->n_icons; i++)
 	{
-	  printf ("%s %s\n", 
+	  printf ("%s %s\n",
 		  list->icons[i].mime_type,
 		  list->icons[i].icon_name);
 	}

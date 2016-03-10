@@ -24,7 +24,7 @@ Querying information about file type (devel) package.
 cp %{SOURCE1001} .
 
 %build
-%cmake . 
+%cmake .
 %__make %{?_smp_mflags}
 
 %install

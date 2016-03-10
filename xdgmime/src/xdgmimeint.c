@@ -164,14 +164,14 @@ _xdg_convert_to_ucs4 (const char *source, int *len)
 
   p = source;
   i = 0;
-  while (*p) 
+  while (*p)
     {
       out[i++] = _xdg_utf8_to_ucs4 (p);
-      p = _xdg_utf8_next_char (p); 
+      p = _xdg_utf8_next_char (p);
     }
   out[i] = 0;
   *len = i;
- 
+
   return out;
 }
 
@@ -181,9 +181,9 @@ _xdg_reverse_ucs4 (xdg_unichar_t *source, int len)
   xdg_unichar_t c;
   int i;
 
-  for (i = 0; i < len - i - 1; i++) 
+  for (i = 0; i < len - i - 1; i++)
     {
-      c = source[i]; 
+      c = source[i];
       source[i] = source[len - i - 1];
       source[len - i - 1] = c;
     }

@@ -336,7 +336,7 @@ _xdg_glob_hash_node_lookup_file_name (XdgGlobHashNode *glob_hash_node,
         {
           len--;
           n = 0;
-          if (len > 0) 
+          if (len > 0)
 	    {
 	      n = _xdg_glob_hash_node_lookup_file_name (node->child,
 							file_name,
@@ -353,7 +353,7 @@ _xdg_glob_hash_node_lookup_file_name (XdgGlobHashNode *glob_hash_node,
                 {
 	          mime_types[n].mime = node->mime_type;
 		  mime_types[n].weight = node->weight;
-		  n++; 
+		  n++;
                 }
 	      node = node->child;
 	      while (n < n_mime_types && node && node->character == 0)

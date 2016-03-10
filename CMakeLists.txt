@@ -38,7 +38,7 @@ SET(CMAKE_C_FLAGS_RELEASE "-O2")
 
 SET(CMAKE_SKIP_BUILD_RPATH true)
 
-# Get uname value to set 'TARGET' definition 
+# Get uname value to set 'TARGET' definition
 # TODO: Is this needed?
 FIND_PROGRAM(UNAME NAMES uname)
 EXEC_PROGRAM("${UNAME}" ARGS "-m" OUTPUT_VARIABLE "ARCH")
