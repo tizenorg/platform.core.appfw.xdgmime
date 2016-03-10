@@ -58,8 +58,6 @@ typedef struct mime_type_info_list
 	time_t globs2_mtime;
 } mime_type_info_list;
 
-static mime_type_info_list *mti_list = NULL;
-
 
 /***************************
  * mime_type_info functions
@@ -97,12 +95,12 @@ mime_type_info_add_file_name(mime_type_info *mti,
 		const char *mime_type,
 		const char *file_name)
 {
-	if(!mti) return;
+	if(!mti) return -1;
 
 	if(!mti->mime_type) {
 		mti->mime_type = strdup(mime_type);
 	}
-	else { 
+	else {
 		/* mime_type already exist, but mime_type is different! */
 		if(strcmp(mti->mime_type, mime_type)) return -1;
 	}
@@ -127,7 +125,7 @@ mime_type_info_add_file_name(mime_type_info *mti,
 	}
 
 	*pname = strdup(file_name);
-	
+
 	return 0;
 }
 
@@ -152,39 +150,20 @@ mime_type_info_list_new(void)
 	return mtil;
 }
 
-
-
-/* free and init mtlist */
-static void
-mime_type_info_list_free(mime_type_info_list *mtil)
-{
-	mime_type_info **mti;
-	char *tmp;
-
-	for(mti = mtil->mti_list; 
-			*mti; 
-			mti++) {
-		mime_type_info_free(*mti);
-	}
-
-	free(mtil->mti_list);
-	free(mtil);
-}
-
 static int
 mime_type_info_list_add_file_name(mime_type_info_list *mtil,
 		const char *mime_type,
 		const char *file_name)
 {
-	if(!mtil) return;
+	if(!mtil) return -1;
 
 	mime_type_info **mti;
 	int found = 0;
 
 	for(mti = mtil->mti_list; mti < (mtil->mti_list + mtil->mti_list_size - 1) && *mti; mti++) {
 		if((*mti)->mime_type &&	mime_type &&  /* NULL check */
-			0 == strncmp((*mti)->mime_type, 
-				mime_type, 
+			0 == strncmp((*mti)->mime_type,
+				mime_type,
 				strlen(mime_type))) {
 			/* found! */
 			found = 1;
@@ -224,7 +203,6 @@ mime_type_info_list_reload(mime_type_info_list *mtil)
 {
 	FILE *globs2 = NULL;
 	struct stat globs2_stat;
-	int r;
 	char buf[256];
 
 	if(!mtil) return;
@@ -236,8 +214,8 @@ mime_type_info_list_reload(mime_type_info_list *mtil)
 
 	/* clean old mtil */
 	mime_type_info **mti;
-	for(mti = mtil->mti_list; 
-		*mti; 
+	for(mti = mtil->mti_list;
+		*mti;
 		mti++) {
 		mime_type_info_free(*mti);
 		*mti = NULL;
@@ -248,15 +226,15 @@ mime_type_info_list_reload(mime_type_info_list *mtil)
 
 	/* read globs2, and construct data structure */
 	globs2 = fopen(GLOBS2_PATH, "r");
-	char *weight, *mime_type, *file_name, *saveptr = NULL;
+	char *mime_type, *file_name, *saveptr = NULL;
 	while(fgets(buf, 255, globs2)) {
 		/* skip comment */
 		if(*buf == '#') continue;
 		/* weight:mime_type:file_name */
-		weight = strtok_r(buf, ":\n", &saveptr);	/* ignored */
+		/* weight = strtok_r(buf, ":\n", &saveptr);	ignored */
 		mime_type = strtok_r(NULL, ":\n", &saveptr);
 		file_name = strtok_r(NULL, ":\n", &saveptr);
-		
+
 		mime_type_info_list_add_file_name(mtil, mime_type, file_name);
 	}
 	fclose(globs2);
@@ -266,7 +244,7 @@ mime_type_info_list_reload(mime_type_info_list *mtil)
 }
 
 static const char **
-mime_type_info_list_get_file_names(mime_type_info_list *mtil, 
+mime_type_info_list_get_file_names(mime_type_info_list *mtil,
 		const char *mime_type)
 {
 
@@ -286,7 +264,7 @@ mime_type_info_list_get_file_names(mime_type_info_list *mtil,
 }
 
 
-/* API 
+/* API
  * Get file names' list from mime type
  */
 API const char **
